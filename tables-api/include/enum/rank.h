@@ -1,6 +1,8 @@
 #pragma once
 
-enum class Rank
+#include <cstdint>
+
+enum class Rank : std::uint8_t
 {
     kA,
     k2,

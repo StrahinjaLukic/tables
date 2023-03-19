@@ -1,6 +1,8 @@
 #pragma once
 
-enum class Suit
+#include <cstdint>
+
+enum class Suit : std::uint8_t
 {
     kHearts,
     kSpades,

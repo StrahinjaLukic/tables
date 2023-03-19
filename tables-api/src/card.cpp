@@ -11,7 +11,7 @@ std::uint8_t Order(const Card& card)
 }
 }  // namespace
 
-inline bool operator==(const Card& lhs, const Card& rhs)
+bool operator==(const Card& lhs, const Card& rhs)
 {
     return lhs.suit == rhs.suit && lhs.rank == rhs.rank;
 }

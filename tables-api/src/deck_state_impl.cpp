@@ -37,7 +37,7 @@ DeckState::CardSet MakeFullDeck()
 
 }  // namespace
 
-DeckState::Impl::Impl() : remaining_(MakeFullDeck()) {}
+DeckState::Impl::Impl() : stock_(MakeFullDeck()) {}
 
 DeckState::CardSet DeckState::Impl::PlayerHand(std::uint32_t player_idx)
 {
@@ -54,7 +54,7 @@ DeckState::CardSet DeckState::Impl::Talon()
     return talon_;
 }
 
-DeckState::CardSet DeckState::Impl::Remaining()
+DeckState::CardSet DeckState::Impl::Stock()
 {
-    return remaining_;
+    return stock_;
 }

@@ -9,7 +9,7 @@
 class DeckState;
 
 /**
- * Perform a move in the game.
+ * Perform a move in the game, if the move is legal and the requested cards are available.
  *
  * @param deck_state [DeckState] of the game.
  * @param player_idx index of the player who is making the move.

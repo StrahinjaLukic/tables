@@ -21,7 +21,7 @@ DeckState::CardSet DeckState::Talon()
     return impl_->Talon();
 }
 
-DeckState::CardSet DeckState::Remaining()
+DeckState::CardSet DeckState::Stock()
 {
-    return impl_->Remaining();
+    return impl_->Stock();
 }

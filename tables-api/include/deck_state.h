@@ -28,13 +28,11 @@ public:
     /** Returns the set of cards laid down facing up on the table (the "talon"). */
     CardSet Talon();
     /** Returns the set of cards remaining to be dealt in the forthcoming rounds. */
-    CardSet Remaining();
+    CardSet Stock();
 
 private:
-    friend MoveStatus MakeMove(DeckState& deck_state,
-                               std::uint32_t player_idx,
-                               Card player_card,
-                               std::unordered_set<Card> cards_to_take);
+    friend class DeckModifier;
+
     class Impl;
     std::unique_ptr<Impl> impl_;
 };

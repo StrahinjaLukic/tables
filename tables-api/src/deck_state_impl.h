@@ -13,16 +13,13 @@ public:
     CardSet PlayerHand(std::uint32_t player_idx);
     CardSet PlayerTaken(std::uint32_t player_idx);
     CardSet Talon();
-    CardSet Remaining();
+    CardSet Stock();
 
 private:
-    friend MoveStatus MakeMove(DeckState& deck_state,
-                               std::uint32_t player_idx,
-                               Card player_card,
-                               std::unordered_set<Card> cards_to_take);
+    friend class DeckModifier;
 
     std::array<CardSet, kMaxPlayers> player_hand_{CardSet{}, CardSet{}, CardSet{}, CardSet{}};
     std::array<CardSet, kMaxPlayers> player_taken_{CardSet{}, CardSet{}, CardSet{}, CardSet{}};
     CardSet talon_{};
-    CardSet remaining_;
+    CardSet stock_;
 };

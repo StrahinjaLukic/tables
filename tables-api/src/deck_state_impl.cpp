@@ -1,41 +1,6 @@
 #include "deck_state_impl.h"
 
-#include <cassert>
-
-namespace
-{
-static const std::unordered_set<Rank> kRanks = {Rank::kA,
-                                                Rank::k2,
-                                                Rank::k3,
-                                                Rank::k4,
-                                                Rank::k5,
-                                                Rank::k6,
-                                                Rank::k7,
-                                                Rank::k8,
-                                                Rank::k9,
-                                                Rank::k10,
-                                                Rank::kJ,
-                                                Rank::kQ,
-                                                Rank::kK};
-
-static const std::unordered_set<Suit> kSuits = {
-    Suit::kClubs, Suit::kDiamonds, Suit::kHearts, Suit::kSpades};
-
-DeckState::CardSet MakeFullDeck()
-{
-    DeckState::CardSet card_set;
-    for (const auto suit : kSuits)
-    {
-        for (const auto rank : kRanks)
-        {
-            const auto e = card_set.emplace(suit, rank);
-            assert(e.second);
-        }
-    }
-    return card_set;
-}
-
-}  // namespace
+#include "util/make_full_deck.h"
 
 DeckState::Impl::Impl() : stock_(MakeFullDeck()) {}
 

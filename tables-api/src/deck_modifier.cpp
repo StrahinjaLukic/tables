@@ -103,7 +103,10 @@ MoveStatus DeckModifier::MakeMove(DeckState& deck_state,
     return MoveStatus::kOk;
 }
 
-DealStatus DeckModifier::DealCards(DeckState::Impl& deck_state_impl, std::uint32_t player_idx)
+DealStatus DeckModifier::DealCards(
+    DeckState::Impl& deck_state_impl,
+    std::uint32_t player_idx,
+    std::function<typename DeckState::CardSet(typename DeckState::CardSet& source)> card_picker)
 {
     if (player_idx >= kMaxPlayers)
     {
@@ -122,7 +125,7 @@ DealStatus DeckModifier::DealCards(DeckState::Impl& deck_state_impl, std::uint32
         return DealStatus::kUnavailableStockCard;
     }
 
-    player_hand = PickAtRandom(stock, kNCardsInHand);
+    player_hand = card_picker ? card_picker(stock) : PickAtRandom(stock, kNCardsInHand);
 
     return DealStatus::kOk;
 }

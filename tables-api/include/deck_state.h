@@ -38,6 +38,7 @@ public:
      * @param player_takens array of card sets representing cards taken by each player.
      * @param talon
      * @param stock
+     * @param n_players Number of players in the game. Valid values are 2 and 4.
      *
      * @note The validity of the requested deck state is not checked. Subsequent operations on the
      * deck may return errors if the state is inconsistent.
@@ -45,12 +46,15 @@ public:
     static DeckState SetUpDeck(std::array<CardSet, kMaxPlayers> player_hands,
                                std::array<CardSet, kMaxPlayers> player_takens,
                                CardSet talon,
-                               CardSet stock);
+                               CardSet stock,
+                               int n_players);
 
     /**
      * Returns the deck state at the beginning of a game.
+     *
+     * @param n_players Number of players in the game. Valid values are 2 and 4.
      */
-    static DeckState StartingDeck();
+    static DeckState StartingDeck(int n_players);
 
 private:
     friend class DeckModifier;

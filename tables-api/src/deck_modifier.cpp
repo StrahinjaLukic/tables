@@ -18,9 +18,18 @@ bool ValuesMatch(const Card player_card, const DeckState::CardSet& cards_to_take
     return true;
 }
 
-void ReturnCards(DeckState::CardSet& talon, DeckState::CardSet&& cards_to_return)
+void ReturnCards(DeckState::CardSet& target, DeckState::CardSet& cards_to_return)
 {
-    talon.insert(cards_to_return.begin(), cards_to_return.end());
+    target.insert(cards_to_return.begin(), cards_to_return.end());
+}
+
+void RevertDeal(DeckState::CardSet& stock,
+                std::array<DeckState::CardSet, kMaxPlayers>& player_hands)
+{
+    for (auto& player_hand : player_hands)
+    {
+        ReturnCards(player_hand, stock);
+    }
 }
 
 /**
@@ -53,6 +62,27 @@ DeckState::CardSet PickAtRandom(DeckState::CardSet& source, std::uint32_t n_card
     }
 
     return picked_cards;
+}
+
+DealStatus DealCards(
+    DeckState::CardSet& player_hand,
+    DeckState::CardSet& stock,
+    std::function<typename DeckState::CardSet(typename DeckState::CardSet& source)> card_picker)
+{
+    assert(player_hand.empty());
+    if (!player_hand.empty())
+    {
+        return DealStatus::kPlayersNotEmpty;
+    }
+
+    assert(stock.size() >= kNCardsInHand);
+    if (stock.size() < kNCardsInHand)
+    {
+        return DealStatus::kInsufficientStock;
+    }
+
+    player_hand = card_picker ? card_picker(stock) : PickAtRandom(stock, kNCardsInHand);
+    return DealStatus::kOk;
 }
 
 }  // namespace
@@ -104,28 +134,21 @@ MoveStatus DeckModifier::MakeMove(DeckState& deck_state,
 }
 
 DealStatus DeckModifier::DealCards(
-    DeckState::Impl& deck_state_impl,
-    std::uint32_t player_idx,
+    DeckState& deck_state,
     std::function<typename DeckState::CardSet(typename DeckState::CardSet& source)> card_picker)
 {
-    if (player_idx >= kMaxPlayers)
-    {
-        return DealStatus::kInvalidPlayerIndex;
-    }
-
-    auto& player_hand = deck_state_impl.player_hand_.at(player_idx);
-    if (!player_hand.empty())
-    {
-        return DealStatus::kPlayerNotEmpty;
-    }
-
+    std::array<DeckState::CardSet, kMaxPlayers> player_hands{};
+    auto& deck_state_impl = *deck_state.impl_;
     auto& stock = deck_state_impl.stock_;
-    if (stock.size() < kNCardsInHand)
+
+    for (int i_player = 0; i_player < deck_state_impl.n_players_; ++i_player)
     {
-        return DealStatus::kUnavailableStockCard;
+        const auto status = ::DealCards(player_hands.at(i_player), stock, card_picker);
+        if (status != DealStatus::kOk)
+        {
+            RevertDeal(stock, player_hands);
+            return status;
+        }
     }
-
-    player_hand = card_picker ? card_picker(stock) : PickAtRandom(stock, kNCardsInHand);
-
     return DealStatus::kOk;
 }

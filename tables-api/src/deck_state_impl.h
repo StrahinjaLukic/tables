@@ -18,13 +18,12 @@ public:
 private:
     friend class DeckModifier;
     friend class DeckState;
-    friend DeckState DeckState::SetUpDeck(std::array<CardSet, kMaxPlayers>,
-                                          std::array<CardSet, kMaxPlayers>,
-                                          CardSet,
-                                          CardSet);
+    friend DeckState DeckState::SetUpDeck(
+        std::array<CardSet, kMaxPlayers>, std::array<CardSet, kMaxPlayers>, CardSet, CardSet, int);
 
     std::array<CardSet, kMaxPlayers> player_hand_{CardSet{}, CardSet{}, CardSet{}, CardSet{}};
     std::array<CardSet, kMaxPlayers> player_taken_{CardSet{}, CardSet{}, CardSet{}, CardSet{}};
     CardSet talon_{};
     CardSet stock_;
+    int n_players_{2};
 };

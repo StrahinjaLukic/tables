@@ -1,6 +1,8 @@
 #include "card.h"
 #include "constants.h"
+#include "deal.h"
 #include "deck_state.h"
+#include "enum/deal_status.h"
 
 #include <gmock/gmock.h>
 #include <gtest/gtest.h>
@@ -9,18 +11,25 @@
 
 namespace
 {
+
 using testing::Contains;
 using testing::IsEmpty;
+using testing::Values;
 
 MATCHER_P(SuitMatches, suit, "")
 {
     return arg.GetSuit() == suit;
 };
+
+class DealTest : public testing::TestWithParam<int>
+{
+};
+
 }  // namespace
 
-TEST(DealTest, RegularStartingDeal)
+TEST(DealTest, RegularStartingDeck)
 {
-    const auto deck_state = DeckState::StartingDeck();
+    const auto deck_state = DeckState::StartingDeck(2);
     const auto& stock = deck_state.Stock();
     EXPECT_THAT(stock, Contains(SuitMatches(Suit::kClubs)).Times(13));
     EXPECT_THAT(stock, Contains(SuitMatches(Suit::kDiamonds)).Times(13));
@@ -33,3 +42,11 @@ TEST(DealTest, RegularStartingDeal)
     }
     EXPECT_THAT(deck_state.Talon(), IsEmpty());
 }
+
+TEST_P(DealTest, DealFirstHand)
+{
+    auto deck_state = DeckState::StartingDeck(GetParam());
+    EXPECT_EQ(DealStatus::kOk, Deal(deck_state));
+}
+
+INSTANTIATE_TEST_SUITE_P(DealFirstHandCases, DealTest, Values(2, 4));

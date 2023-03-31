@@ -26,10 +26,7 @@ void ReturnCards(DeckState::CardSet& target, DeckState::CardSet& cards_to_return
 void RevertDeal(DeckState::CardSet& stock,
                 std::array<DeckState::CardSet, kMaxPlayers>& player_hands)
 {
-    for (auto& player_hand : player_hands)
-    {
-        ReturnCards(player_hand, stock);
-    }
+    for (auto& player_hand : player_hands) { ReturnCards(player_hand, stock); }
 }
 
 /**
@@ -69,13 +66,11 @@ DealStatus DealCards(
     DeckState::CardSet& stock,
     std::function<typename DeckState::CardSet(typename DeckState::CardSet& source)> card_picker)
 {
-    assert(player_hand.empty());
     if (!player_hand.empty())
     {
         return DealStatus::kPlayersNotEmpty;
     }
 
-    assert(stock.size() >= kNCardsInHand);
     if (stock.size() < kNCardsInHand)
     {
         return DealStatus::kInsufficientStock;

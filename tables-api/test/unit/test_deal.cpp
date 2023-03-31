@@ -1,4 +1,5 @@
 #include "card.h"
+#include "cards.h"
 #include "constants.h"
 #include "deal.h"
 #include "deck_state.h"
@@ -11,7 +12,6 @@
 
 namespace
 {
-
 using testing::Contains;
 using testing::IsEmpty;
 using testing::Values;
@@ -62,3 +62,23 @@ TEST_P(DealTest, DealFirstHand)
 }
 
 INSTANTIATE_TEST_SUITE_P(DealFirstHandCases, DealTest, Values(2, 4));
+
+TEST_P(DealTest, InsufficientStock)
+{
+    const auto& n_players = GetParam();
+
+    auto deck_state = DeckState::SetUpDeck(
+        {},
+        {},
+        {kKHearts, kQHearts, k3Diamonds, k6Diamonds, k6Clubs, kQClubs, k9Spades},
+        {},
+        n_players);
+
+    const DeckState::CardSet stock_before = deck_state.Stock();
+    const DeckState::CardSet first_player_hand_before = deck_state.PlayerHand(0);
+
+    EXPECT_EQ(DealStatus::kInsufficientStock, Deal(deck_state));
+
+    EXPECT_EQ(stock_before, deck_state.Stock());
+    EXPECT_EQ(first_player_hand_before, deck_state.PlayerHand(0));
+}

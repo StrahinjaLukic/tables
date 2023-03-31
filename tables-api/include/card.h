@@ -8,7 +8,7 @@
 class Card
 {
 public:
-    Card(Suit suit, Rank rank);
+    constexpr Card(Suit suit, Rank rank) : suit_(suit), rank_(rank) {}
 
     Suit GetSuit() const;
     Rank GetRank() const;

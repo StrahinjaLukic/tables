@@ -1,0 +1,56 @@
+#pragma once
+
+#include "card.h"
+
+constexpr auto kAHearts = Card{Suit::kHearts, Rank::kA};
+constexpr auto k2Hearts = Card{Suit::kHearts, Rank::k2};
+constexpr auto k3Hearts = Card{Suit::kHearts, Rank::k3};
+constexpr auto k4Hearts = Card{Suit::kHearts, Rank::k4};
+constexpr auto k5Hearts = Card{Suit::kHearts, Rank::k5};
+constexpr auto k6Hearts = Card{Suit::kHearts, Rank::k6};
+constexpr auto k7Hearts = Card{Suit::kHearts, Rank::k7};
+constexpr auto k8Hearts = Card{Suit::kHearts, Rank::k8};
+constexpr auto k9Hearts = Card{Suit::kHearts, Rank::k9};
+constexpr auto k10Hearts = Card{Suit::kHearts, Rank::k10};
+constexpr auto kJHearts = Card{Suit::kHearts, Rank::kJ};
+constexpr auto kQHearts = Card{Suit::kHearts, Rank::kQ};
+constexpr auto kKHearts = Card{Suit::kHearts, Rank::kK};
+constexpr auto kASpades = Card{Suit::kSpades, Rank::kA};
+constexpr auto k2Spades = Card{Suit::kSpades, Rank::k2};
+constexpr auto k3Spades = Card{Suit::kSpades, Rank::k3};
+constexpr auto k4Spades = Card{Suit::kSpades, Rank::k4};
+constexpr auto k5Spades = Card{Suit::kSpades, Rank::k5};
+constexpr auto k6Spades = Card{Suit::kSpades, Rank::k6};
+constexpr auto k7Spades = Card{Suit::kSpades, Rank::k7};
+constexpr auto k8Spades = Card{Suit::kSpades, Rank::k8};
+constexpr auto k9Spades = Card{Suit::kSpades, Rank::k9};
+constexpr auto k10Spades = Card{Suit::kSpades, Rank::k10};
+constexpr auto kJSpades = Card{Suit::kSpades, Rank::kJ};
+constexpr auto kQSpades = Card{Suit::kSpades, Rank::kQ};
+constexpr auto kKSpades = Card{Suit::kSpades, Rank::kK};
+constexpr auto kADiamonds = Card{Suit::kDiamonds, Rank::kA};
+constexpr auto k2Diamonds = Card{Suit::kDiamonds, Rank::k2};
+constexpr auto k3Diamonds = Card{Suit::kDiamonds, Rank::k3};
+constexpr auto k4Diamonds = Card{Suit::kDiamonds, Rank::k4};
+constexpr auto k5Diamonds = Card{Suit::kDiamonds, Rank::k5};
+constexpr auto k6Diamonds = Card{Suit::kDiamonds, Rank::k6};
+constexpr auto k7Diamonds = Card{Suit::kDiamonds, Rank::k7};
+constexpr auto k8Diamonds = Card{Suit::kDiamonds, Rank::k8};
+constexpr auto k9Diamonds = Card{Suit::kDiamonds, Rank::k9};
+constexpr auto k10Diamonds = Card{Suit::kDiamonds, Rank::k10};
+constexpr auto kJDiamonds = Card{Suit::kDiamonds, Rank::kJ};
+constexpr auto kQDiamonds = Card{Suit::kDiamonds, Rank::kQ};
+constexpr auto kKDiamonds = Card{Suit::kDiamonds, Rank::kK};
+constexpr auto kAClubs = Card{Suit::kClubs, Rank::kA};
+constexpr auto k2Clubs = Card{Suit::kClubs, Rank::k2};
+constexpr auto k3Clubs = Card{Suit::kClubs, Rank::k3};
+constexpr auto k4Clubs = Card{Suit::kClubs, Rank::k4};
+constexpr auto k5Clubs = Card{Suit::kClubs, Rank::k5};
+constexpr auto k6Clubs = Card{Suit::kClubs, Rank::k6};
+constexpr auto k7Clubs = Card{Suit::kClubs, Rank::k7};
+constexpr auto k8Clubs = Card{Suit::kClubs, Rank::k8};
+constexpr auto k9Clubs = Card{Suit::kClubs, Rank::k9};
+constexpr auto k10Clubs = Card{Suit::kClubs, Rank::k10};
+constexpr auto kJClubs = Card{Suit::kClubs, Rank::kJ};
+constexpr auto kQClubs = Card{Suit::kClubs, Rank::kQ};
+constexpr auto kKClubs = Card{Suit::kClubs, Rank::kK};

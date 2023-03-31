@@ -11,8 +11,6 @@ std::uint8_t Order(const Card& card)
 }
 }  // namespace
 
-Card::Card(Suit suit, Rank rank) : suit_(suit), rank_(rank) {}
-
 Rank Card::GetRank() const
 {
     return rank_;

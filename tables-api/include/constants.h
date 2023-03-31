@@ -1,4 +1,6 @@
 #pragma once
 
-static constexpr auto kMaxPlayers = 4;
-static constexpr auto kNCardsInHand = 6;
+constexpr auto kMaxPlayers = 4;
+constexpr auto kNCardsInHand = 6;
+constexpr auto kNRanks = 13;
+constexpr auto kDeckSize = kNRanks * 4;

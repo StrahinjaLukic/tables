@@ -9,22 +9,22 @@ DeckState::DeckState() : impl_(std::make_unique<Impl>()) {}
 
 DeckState::~DeckState() {}
 
-DeckState::CardSet DeckState::PlayerHand(std::uint32_t player_idx) const
+const DeckState::CardSet& DeckState::PlayerHand(std::uint32_t player_idx) const
 {
     return impl_->PlayerHand(player_idx);
 }
 
-DeckState::CardSet DeckState::PlayerTaken(std::uint32_t player_idx) const
+const DeckState::CardSet& DeckState::PlayerTaken(std::uint32_t player_idx) const
 {
     return impl_->PlayerTaken(player_idx);
 }
 
-DeckState::CardSet DeckState::Talon() const
+const DeckState::CardSet& DeckState::Talon() const
 {
     return impl_->Talon();
 }
 
-DeckState::CardSet DeckState::Stock() const
+const DeckState::CardSet& DeckState::Stock() const
 {
     return impl_->Stock();
 }

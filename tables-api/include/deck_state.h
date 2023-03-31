@@ -23,13 +23,13 @@ public:
     DeckState(DeckState&& other);
 
     /** Returns the set of cards held by the player with index player_idx in their hands. */
-    CardSet PlayerHand(std::uint32_t player_idx) const;
+    const CardSet& PlayerHand(std::uint32_t player_idx) const;
     /** Returns the set of cards taken by the player with index player_idx. */
-    CardSet PlayerTaken(std::uint32_t player_idx) const;
+    const CardSet& PlayerTaken(std::uint32_t player_idx) const;
     /** Returns the set of cards laid down facing up on the table (the "talon"). */
-    CardSet Talon() const;
+    const CardSet& Talon() const;
     /** Returns the set of cards remaining to be dealt in the forthcoming rounds. */
-    CardSet Stock() const;
+    const CardSet& Stock() const;
 
     /**
      * Returns the deck state as described by the arguments.

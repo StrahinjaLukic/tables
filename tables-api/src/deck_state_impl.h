@@ -10,10 +10,10 @@ class DeckState::Impl
 public:
     Impl();
 
-    CardSet PlayerHand(std::uint32_t player_idx);
-    CardSet PlayerTaken(std::uint32_t player_idx);
-    CardSet Talon();
-    CardSet Stock();
+    const CardSet& PlayerHand(std::uint32_t player_idx);
+    const CardSet& PlayerTaken(std::uint32_t player_idx);
+    const CardSet& Talon();
+    const CardSet& Stock();
 
 private:
     friend class DeckModifier;

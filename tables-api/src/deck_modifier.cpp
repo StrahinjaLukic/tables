@@ -150,5 +150,6 @@ DealStatus DeckModifier::DealCards(
             return status;
         }
     }
+    deck_state_impl.player_hand_ = std::move(player_hands);
     return DealStatus::kOk;
 }
